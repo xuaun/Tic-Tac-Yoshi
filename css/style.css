@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 :root {
   --cinza: #aaa;
   --verde: #006000;
@@ -7,12 +9,25 @@
 
 @font-face {
   font-family: SMW2;
-  src: url(../font/SMW2-Yoshis-Island.ttf)
+  src: url(../font/SMW2-Yoshis-Island.ttf);
 }
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MENU */
 
 .menu {
   font-family: SMW2;
   color: var(--cinza);
+  justify-content: center;
+  background: url(../assets/menu-background-img.png) center no-repeat, #000000;
+  background-size: cover;
 }
 
 .menu__intro {
@@ -23,119 +38,42 @@
 
 .menu__intro__titulo {
   margin-bottom: 1%;
-  font-size: 7rem;
+  font-size: clamp(4rem, 1.137rem + 12.214vw, 7rem);
   color: var(--amarelo);
   text-align: center;
 }
 
-.menu__intro__comecar__1p {
-  font-size: 5rem;
-}
+.menu__intro__comecar__1p,
 .menu__intro__comecar__2p {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 0.714rem + 8.929vw, 5rem);
 }
 
-.rodape {
+/* SELEÇÃO DE PERSONAGEM */
+
+.personagem {
+  justify-content: center;
   font-family: SMW2;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  height: 150px;
-}
-
-.partida__rodape {
-  font-size: 150%;
-  color: #000;
-  background-color: var(--verde);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
+  background: url(../assets/personagem-background-img.png) center no-repeat,
+    #000098;
+  height: fit-content;
+  min-height: 100vh;
   width: 100%;
-  height: 10%;
-}
-
-.personagem__titulo {
-  margin-bottom: 20px;
-  font-size: 500%;
-  text-align: center;
-  color: var(--amarelo);
-}
-
-.personagem__rodape {
-  color: var(--amarelo);
-  bottom: 0;
-  width: 100%;
-  height: 10%;
-}
-
-.start {
-  color: var(--amarelo);
-  margin-top: 5px;
-  font-size: 3rem;
+  background-size: cover;
 }
 
 .personagem__main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 55rem;
+  margin: 0 10px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.menu {
-  justify-content: center;
-  background: url(../assets/menu-background-img.png), #000000;
-  height: 100vh;
-  width: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.personagem {
-  justify-content: center;
-  font-family: SMW2;
-  background: url(../assets/personagem-background-img.png), #000098;
-  height: 100vh;
-  width: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 55rem;
-  margin: auto;
-}
-
-.partida {
-  font-family: SMW2;
-  background: url(../assets/game-background-img.png), #00a8f3;
-  height: 100vh;
-  width: 100vw;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.partida__titulo {
+.personagem__titulo {
   margin-bottom: 20px;
-  font-size: 650%;
+  font-size: clamp(3rem, 2.143rem + 4.286vw, 6rem);
   text-align: center;
   color: var(--amarelo);
-}
-
-body {
-  width: 100vw;
-  min-height: 100vh;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
 }
 
 .personagens {
@@ -150,41 +88,46 @@ body {
 }
 
 .yoshi {
-  background-color: #90A860;
+  background-color: #90a860;
   box-shadow: 5px 5px 0 #307878;
   cursor: pointer;
   height: 120px;
   width: 120px;
 }
 
-.yoshi.ativa,
-.yoshi:active,
-.selected {
-  background-color: #D8A860;
-  border: 4px solid #DBDB84;
-  box-shadow: 3px 3px 0 #666 inset;
-  outline: none;
+.yoshi span {
+  position: absolute;
+  font-size: 24px;
+  margin-left: -110px;
 }
 
-.voltar-menu.ativa,
-.voltar-menu:active,
-.menu__intro__comecar.ativa,
-.menu__intro__comecar:active,
-.start.ativa,
-.start:active,
-#reset:active {
-  color: var(--azul);
+.start {
+  color: var(--amarelo);
+  margin-top: 5px;
+  font-size: 3rem;
 }
 
-.yoshi.focus,
-.yoshi:focus {
-  outline: none;
-  box-shadow: 10px 10px 10px var(--verde);
+/* PARTIDA */
+
+.partida {
+  font-family: SMW2;
+  background: url(../assets/game-background-img.png), #00a8f3;
+  height: 100vh;
+  width: 100vw;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.yoshi.ativa:focus,
-.yoshi:active:focus {
-  box-shadow: 3px 3px 0 var(--verde) inset, 10px 10px 10px var(--verde);
+.partida__main {
+  margin-top: 2%;
+}
+
+.partida__titulo {
+  margin-bottom: 20px;
+  font-size: 650%;
+  text-align: center;
+  color: var(--amarelo);
 }
 
 .campo {
@@ -194,12 +137,12 @@ body {
   width: 100%;
 }
 
-.P1{
+.P1 {
   height: 33.3%;
   width: 10rem;
 }
 
-.P2{
+.P2 {
   height: 33.3%;
   width: 10rem;
   -moz-transform: scaleX(-1);
@@ -212,6 +155,10 @@ body {
   margin: 20px auto;
   width: 400px;
   text-align: center;
+}
+
+#status {
+  font-size: 40px;
 }
 
 #board {
@@ -235,31 +182,114 @@ body {
   cursor: pointer;
 }
 
-.square:hover {
-  background-color: var(--amarelo);
-}
-
 #reset {
   margin-top: 20px;
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
-}
-
-#status {
   font-size: 40px;
 }
 
-#reset {
-  font-size: 40px;
-}
+/* RODAPÉ */
 
-.partida__main {
-  margin-top: 2%;
-}
-
-.yoshi span {
+.rodape {
+  font-family: SMW2;
+  font-size: clamp(1.5rem, 1.143rem + 1.786vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  font-size: 24px;
-  margin-left: -110px;
+  bottom: 17vh;
+}
+
+.personagem__rodape {
+  margin-top: 20px;
+  color: var(--amarelo);
+  bottom: 0;
+  position: relative;
+}
+
+.partida__rodape {
+  font-size: 150%;
+  color: #000;
+  background-color: var(--verde);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+}
+
+/* HOVER & FOCUS */
+
+.menu__intro__comecar__1p:hover,
+.menu__intro__comecar__1p:focus,
+.menu__intro__comecar__2p:hover,
+.menu__intro__comecar__2p:focus,
+.voltar-menu:hover,
+.voltar-menu:focus,
+.start:hover,
+.start:focus {
+  color: var(--verde);
+}
+
+.partida .voltar-menu:hover,
+.partida .voltar-menu:focus {
+  color: var(--azul);
+}
+
+.yoshi:hover :not(.selected),
+.yoshi:focus :not(.selected) {
+  background-color: #86a83b;
+  box-shadow: 5px 5px 0 #235757;
+  border: 1px solid #e4e4a2;
+}
+
+.yoshi:focus .selected,
+.yoshi:focus :not(.selected) {
+  outline: thick double #235757;
+}
+
+.yoshi:hover .selected + span,
+.yoshi:focus .selected + span {
+  background: none;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.yoshi.ativa,
+.yoshi:active,
+.selected {
+  background-color: #d8a860;
+  border: 4px solid #dbdb84;
+  box-shadow: 3px 3px 0 #666 inset;
+}
+
+.voltar-menu.ativa,
+.voltar-menu:active,
+.menu__intro__comecar.ativa,
+.menu__intro__comecar:active,
+.start.ativa,
+.start:active,
+#reset:active {
+  color: var(--azul);
+}
+
+.yoshi.focus,
+.yoshi:focus {
+  outline: none;
+  box-shadow: 10px 10px 10px var(--verde);
+}
+
+.yoshi.ativa:focus,
+.yoshi:active:focus {
+  box-shadow: 3px 3px 0 var(--verde) inset, 10px 10px 10px var(--verde);
+}
+
+.square:hover {
+  background-color: var(--amarelo);
 }
