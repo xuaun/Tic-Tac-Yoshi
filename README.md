@@ -61,7 +61,7 @@ When selecting two players (versus), the game path is as follows:
 </p>
 
 ## How to play this game
-To access this game, access its web version at https://xuaun.github.io/Tic-Tac-Yoshi/ (better using desktop).
+To access this game, access its web version at https://xuaun.github.io/Tic-Tac-Yoshi/.
 
 ## Technologies used
 In this project, ```HTML```, ```CSS```, ```JavaScript``` were used.
@@ -127,7 +127,7 @@ Ao selecionar dois jogadores (versus), o caminho de jogo é o seguinte:
 </p>
 
 ## Instruções de como jogar
-Para acessar este jogo, acesse sua versão web em https://xuaun.github.io/Tic-Tac-Yoshi/ (melhor no desktop).
+Para acessar este jogo, acesse sua versão web em https://xuaun.github.io/Tic-Tac-Yoshi/.
 
 ## Tecnologias utilizadas
 Neste projeto, foi utilizado ```HTML```, ```CSS```, ```JavaScript``` .
