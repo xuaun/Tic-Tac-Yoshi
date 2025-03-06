@@ -1,159 +1,188 @@
-const squares = document.querySelectorAll('.square');
-const status = document.getElementById('status');
-const resetButton = document.getElementById('reset');
-let currentPlayer = 'X';
-let gameBoard = ['','','','','','','','',''];
+const squares = document.querySelectorAll(".square");
+const status = document.getElementById("status");
+const resetButton = document.getElementById("reset");
+let currentPlayer = "X";
+let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
-// Function to check if there is a winner
 function checkWinner() {
-	const winningCombos = [		[0,1,2], [3,4,5], [6,7,8], // Horizontal
-		[0,3,6], [1,4,7], [2,5,8], // Vertical
-		[0,4,8], [2,4,6] // Diagonal
-	];
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
-	for (let i = 0; i < winningCombos.length; i++) {
-		const [a, b, c] = winningCombos[i];
-		if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-			return true;
-		}
-	}
-	return false;
+  for (let i = 0; i < winningCombos.length; i++) {
+    const [a, b, c] = winningCombos[i];
+    if (
+      gameBoard[a] &&
+      gameBoard[a] === gameBoard[b] &&
+      gameBoard[a] === gameBoard[c]
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
 
-// Function to check if the game is a tie
 function checkTie() {
-	return !gameBoard.includes('');
+  return !gameBoard.includes("");
 }
 
-// Function to update the status message
 function updateStatus() {
-	if (checkWinner()) {
-		status.textContent = `O Yoshi ${currentPlayer} venceu, parabens!`;
-		changeWinnerAndLoserImages(); // Mudar imagens ao vencer
-		disableSquares();
-	} else if (checkTie()) {
-		status.textContent = `Que pena, empatou!`;
-		changeTieImages(); // Mudar imagens ao empatar
-		disableSquares();
-	} else {
-		status.textContent = `Turno do Yoshi ${currentPlayer}`;
-	}
+  if (checkWinner()) {
+    if (currentPlayer == "X") {
+      status.textContent = `O Yoshi ${cor} ${currentPlayer} venceu, parabens!`;
+    } else {
+      status.textContent = `O Yoshi ${corP2} ${currentPlayer} venceu, parabens!`;
+    }
+    changeWinnerAndLoserImages();
+    disableSquares();
+  } else if (checkTie()) {
+    status.textContent = `Que pena, empatou!`;
+    changeTieImages();
+    disableSquares();
+  } else {
+    if (currentPlayer == "X") {
+      status.textContent = `Turno do Yoshi ${cor} - ${currentPlayer}`;
+    } else {
+      status.textContent = `Turno do Yoshi ${corP2} - ${currentPlayer}`;
+    }
+  }
 }
 
 function changeWinnerAndLoserImages() {
-    const caminhoImagemBaseP1 = localStorage.getItem("yoshi1").replace('-hover.png', '');
-	const caminhoImagemBaseP2 = localStorage.getItem("yoshi2").replace('-hover.png', '');
+  const caminhoImagemBaseP1 = localStorage
+    .getItem("yoshi1")
+    .replace("-hover.png", "");
+  const caminhoImagemBaseP2 = localStorage
+    .getItem("yoshi2")
+    .replace("-hover.png", "");
 
-    const imagemP1 = document.querySelector("#P1 img");
-    const imagemP2 = document.querySelector("#P2 img");
+  const imagemP1 = document.querySelector("#P1 img");
+  const imagemP2 = document.querySelector("#P2 img");
 
-    if (currentPlayer == 'X') {
-        imagemP1.src = `${caminhoImagemBaseP1}-hover.png`;
-        imagemP1.alt = "Yoshi vencedor - jogador X";
-        imagemP2.src = `${caminhoImagemBaseP2}-loser.png`;
-        imagemP2.alt = "Yoshi perdedor - jogador O";
-    } else {
-        imagemP1.src = `${caminhoImagemBaseP1}-loser.png`;
-        imagemP1.alt = "Yoshi perdedor - jogador X";
-        imagemP2.src = `${caminhoImagemBaseP2}-hover.png`;
-        imagemP2.alt = "Yoshi vencedor - jogador O";
-    }
+  if (currentPlayer == "X") {
+    imagemP1.src = `${caminhoImagemBaseP1}-hover.png`;
+    imagemP1.alt = `Yoshi ${cor} vencedor - jogador X`;
+    imagemP2.src = `${caminhoImagemBaseP2}-loser.png`;
+    imagemP2.alt = `Yoshi ${corP2} perdedor - jogador O`;
+  } else {
+    imagemP1.src = `${caminhoImagemBaseP1}-loser.png`;
+    imagemP1.alt = `Yoshi ${cor} perdedor - jogador X`;
+    imagemP2.src = `${caminhoImagemBaseP2}-hover.png`;
+    imagemP2.alt = `Yoshi vencedor - jogador O`;
+  }
 }
 
 function changeTieImages() {
-    const caminhoImagemBaseP1 = localStorage.getItem("yoshi1").replace('-hover.png', '');
-	const caminhoImagemBaseP2 = localStorage.getItem("yoshi2").replace('-hover.png', '');
+  const caminhoImagemBaseP1 = localStorage
+    .getItem("yoshi1")
+    .replace("-hover.png", "");
+  const caminhoImagemBaseP2 = localStorage
+    .getItem("yoshi2")
+    .replace("-hover.png", "");
 
-    const imagemP1 = document.querySelector("#P1 img");
-    const imagemP2 = document.querySelector("#P2 img");
+  const imagemP1 = document.querySelector("#P1 img");
+  const imagemP2 = document.querySelector("#P2 img");
 
-    if (imagemP1) {
-        imagemP1.src = `${caminhoImagemBaseP1}-loser.png`;
-        imagemP1.alt = "Yoshi empate - jogador X";
-    }
-    if (imagemP2) {
-        imagemP2.src = `${caminhoImagemBaseP2}-loser.png`;
-        imagemP2.alt = "Yoshi empate - jogador O";
-    }
+  if (imagemP1) {
+    imagemP1.src = `${caminhoImagemBaseP1}-loser.png`;
+    imagemP1.alt = `Yoshi ${cor} empatou - jogador X`;
+  }
+  if (imagemP2) {
+    imagemP2.src = `${caminhoImagemBaseP2}-loser.png`;
+    imagemP2.alt = `Yoshi ${cor} empatou - jogador O`;
+  }
 }
 
-// Function to handle a square click
 function handleSquareClick(event) {
-	const index = event.target.id;
-	if (!gameBoard[index]) {
-		event.target.textContent = currentPlayer;
-		gameBoard[index] = currentPlayer;
-		if (checkWinner() || checkTie()) {
-			updateStatus();
-		} else {
-			currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-			updateStatus();
-		}
-	}
+  const index = event.target.id;
+  if (!gameBoard[index]) {
+    event.target.textContent = currentPlayer;
+    gameBoard[index] = currentPlayer;
+    if (checkWinner() || checkTie()) {
+      updateStatus();
+    } else {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      updateStatus();
+    }
+  }
 }
 
-// Function to disable squares after game over
 function disableSquares() {
-	for (let i = 0; i < squares.length; i++) {
-		squares[i].removeEventListener('click', handleSquareClick);
-	}
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].removeEventListener("click", handleSquareClick);
+  }
 }
 
-// Function to reset the game
 function resetGame() {
-	for (let i = 0; i < squares.length; i++) {
-		squares[i].textContent = '';
-		squares[i].addEventListener('click', handleSquareClick);
-	}
-	gameBoard = ['','','','','','','','',''];
-	currentPlayer = 'X';
-	resetPlayerImages(); // Retorna para as imagens originais
-	updateStatus();
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].textContent = "";
+    squares[i].addEventListener("click", handleSquareClick);
+  }
+  gameBoard = ["", "", "", "", "", "", "", "", ""];
+  currentPlayer = "X";
+  resetPlayerImages();
+  updateStatus();
 }
 
 function resetPlayerImages() {
-    
-    const imagemP1 = document.querySelector("#P1 img");
-    const imagemP2 = document.querySelector("#P2 img");
+  const imagemP1 = document.querySelector("#P1 img");
+  const imagemP2 = document.querySelector("#P2 img");
 
-    if (imagemP1) {
-        imagemP1.src = caminhoImagemP1;
-        imagemP1.alt = "Yoshi selecionado - jogador X";
-    } else {
-        let imagemp1 = document.createElement("img");
-        imagemp1.src = caminhoImagemP1;
-        imagemp1.alt = "Yoshi selecionado - jogador X";
-        P1.appendChild(imagemp1);
-    }
+  if (imagemP1) {
+    imagemP1.src = caminhoImagemP1;
+    imagemP1.alt = `Yoshi ${cor} selecionado - jogador X`;
+  } else {
+    let imagemp1 = document.createElement("img");
+    imagemp1.src = caminhoImagemP1;
+    imagemp1.alt = `Yoshi ${cor} selecionado - jogador X`;
+    P1.appendChild(imagemp1);
+  }
 
-    if (imagemP2) {
-        imagemP2.src = caminhoImagemP2;
-        imagemP2.alt = "Yoshi selecionado - jogador O";
-    } else {
-        let imagemp2 = document.createElement("img");
-        imagemp2.src = caminhoImagemP2;
-        imagemp2.alt = "Yoshi selecionado - jogador O";
-        P2.appendChild(imagemp2);
-    }
+  if (imagemP2) {
+    imagemP2.src = caminhoImagemP2;
+    imagemP2.alt = `Yoshi ${corP2} selecionado - jogador O`;
+  } else {
+    let imagemp2 = document.createElement("img");
+    imagemp2.src = caminhoImagemP2;
+    imagemp2.alt = `Yoshi ${corP2} selecionado - jogador O`;
+    P2.appendChild(imagemp2);
+  }
 }
 
-// Add event listeners
+const caminhoImagemP1 = localStorage
+  .getItem("yoshi1")
+  .replace("-hover.png", ".png");
+const cor = caminhoImagemP1.split("/")[2].split("-")[0];
+let imagemp1 = document.createElement("img");
+imagemp1.src = caminhoImagemP1;
+imagemp1.alt = `Yoshi ${cor} selecionado - jogador X`;
+P1.appendChild(imagemp1);
+
+const caminhoImagemP2 = localStorage
+  .getItem("yoshi2")
+  .replace("-hover.png", ".png");
+const corP2 = caminhoImagemP2.split("/")[2].split("-")[0];
+let imagemp2 = document.createElement("img");
+imagemp2.src = caminhoImagemP2;
+imagemp2.alt = `Yoshi ${corP2} selecionado - jogador O`;
+P2.appendChild(imagemp2);
+
 for (let i = 0; i < squares.length; i++) {
-	squares[i].addEventListener('click', handleSquareClick);
+  squares[i].addEventListener("click", handleSquareClick);
+  squares[i].addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleSquareClick(event);
+    }
+  });
 }
-resetButton.addEventListener('click', resetGame);
+resetButton.addEventListener("click", resetGame);
 
-// Initial status message
 updateStatus();
-
-const caminhoImagemP1 = localStorage.getItem("yoshi1").replace('-hover.png', '.png');
-        let imagemp1 = document.createElement("img");
-        imagemp1.src = caminhoImagemP1;
-        imagemp1.alt = "Yoshi selecionado - jogador X";
-        P1.appendChild(imagemp1);
-
-const caminhoImagemP2 = localStorage.getItem("yoshi2").replace('-hover.png', '.png');
-        let imagemp2 = document.createElement("img");
-        imagemp2.src = caminhoImagemP2;
-        imagemp2.alt = "Yoshi selecionado - jogador O";
-        P2.appendChild(imagemp2);

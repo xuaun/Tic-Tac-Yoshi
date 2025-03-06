@@ -23,7 +23,7 @@ function handleYoshiClick(yoshi) {
     yoshiBranco.setAttribute("src", "./assets/branco-icon.png");
     yoshiPreto.setAttribute("src", "./assets/preto-icon.png");
     yoshiRoxo.setAttribute("src", "./assets/roxo-icon.png");
-    yoshiAzulClaro.setAttribute("src", "./assets/azul-claro-icon.png");
+    yoshiAzulClaro.setAttribute("src", "./assets/azul claro-icon.png");
   }
 
   selectedYoshi = yoshi;
@@ -48,7 +48,7 @@ function handleYoshiClick(yoshi) {
   } else if (yoshiRoxo == selectedYoshi) {
     yoshiRoxo.setAttribute("src", "./assets/roxo-icon-hover.png");
   } else if (yoshiAzulClaro == selectedYoshi) {
-    yoshiAzulClaro.setAttribute("src", "./assets/azul-claro-icon-hover.png");
+    yoshiAzulClaro.setAttribute("src", "./assets/azul claro-icon-hover.png");
   }
   updateStartButtonState();
 }
@@ -95,7 +95,7 @@ const icons = [
   "./assets/branco-icon-hover.png",
   "./assets/preto-icon-hover.png",
   "./assets/roxo-icon-hover.png",
-  "./assets/azul-claro-icon-hover.png",
+  "./assets/azul claro-icon-hover.png",
 ];
 
 function getRandomIcon(previousIcon) {

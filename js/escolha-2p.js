@@ -79,7 +79,7 @@ function resetYoshiImage(yoshi) {
   } else if (yoshi === yoshiRoxo) {
     yoshiRoxo.setAttribute("src", "./assets/roxo-icon.png");
   } else if (yoshi === yoshiAzulClaro) {
-    yoshiAzulClaro.setAttribute("src", "./assets/azul-claro-icon.png");
+    yoshiAzulClaro.setAttribute("src", "./assets/azul claro-icon.png");
   }
 }
 
@@ -103,7 +103,7 @@ function updateYoshiImage(yoshi) {
   } else if (yoshi === yoshiRoxo) {
     yoshiRoxo.setAttribute("src", "./assets/roxo-icon-hover.png");
   } else if (yoshi === yoshiAzulClaro) {
-    yoshiAzulClaro.setAttribute("src", "./assets/azul-claro-icon-hover.png");
+    yoshiAzulClaro.setAttribute("src", "./assets/azul claro-icon-hover.png");
   }
 }
 
@@ -142,6 +142,7 @@ salvarBtn.addEventListener("click", () => {
   );
   yoshi1 = imagensSelecionadas[0];
   yoshi2 = imagensSelecionadas[1];
+
   localStorage.setItem("yoshi1", yoshi1);
   localStorage.setItem("yoshi2", yoshi2);
 });
