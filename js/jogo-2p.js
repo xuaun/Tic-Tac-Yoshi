@@ -1,6 +1,9 @@
 const squares = document.querySelectorAll(".square");
 const status = document.getElementById("status");
 const resetButton = document.getElementById("reset");
+const P1 = document.getElementById("P1");
+const P2 = document.getElementById("P2");
+let gameStatus = true;
 let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
@@ -39,13 +42,16 @@ function updateStatus() {
       status.textContent = `O Yoshi ${cor} ${currentPlayer} venceu, parabens!`;
     } else {
       status.textContent = `O Yoshi ${corP2} ${currentPlayer} venceu, parabens!`;
+      
     }
     changeWinnerAndLoserImages();
     disableSquares();
+    gameStatus = false;
   } else if (checkTie()) {
     status.textContent = `Que pena, empatou!`;
     changeTieImages();
     disableSquares();
+    gameStatus = false;
   } else {
     if (currentPlayer == "X") {
       status.textContent = `Turno do Yoshi ${cor} - ${currentPlayer}`;
@@ -103,7 +109,23 @@ function changeTieImages() {
 function handleSquareClick(event) {
   const index = event.target.id;
   if (!gameBoard[index]) {
-    event.target.textContent = currentPlayer;
+    if (currentPlayer == "X" && gameStatus) {
+      let eggImageP1 = document.createElement("img");
+      eggImageP1.src = `./assets/${cor}-egg.png`;
+      eggImageP1.alt = `Ovo de Yoshi ${cor} - jogador ${currentPlayer}`;
+      event.target.appendChild(eggImageP1);
+      let jogadaP1 = document.createElement("p");
+      jogadaP1.innerHTML = `${currentPlayer}`
+      event.target.appendChild(jogadaP1);
+    } else if (currentPlayer == "O" && gameStatus) {
+      let eggImageP2 = document.createElement("img");
+      eggImageP2.src = `./assets/${corP2}-egg.png`;
+      eggImageP2.alt = `Ovo de Yoshi ${corP2} - jogador ${currentPlayer}`;
+      event.target.appendChild(eggImageP2);
+      let jogadaP2 = document.createElement("p");
+      jogadaP2.innerHTML = `${currentPlayer}`
+      event.target.appendChild(jogadaP2);
+    }
     gameBoard[index] = currentPlayer;
     if (checkWinner() || checkTie()) {
       updateStatus();
@@ -124,6 +146,7 @@ function resetGame() {
   for (let i = 0; i < squares.length; i++) {
     squares[i].textContent = "";
     squares[i].addEventListener("click", handleSquareClick);
+    gameStatus = true;
   }
   gameBoard = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";

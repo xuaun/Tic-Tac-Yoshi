@@ -138,6 +138,7 @@ body {
 .P1 {
   height: 33.3%;
   width: 10rem;
+  z-index: 1;
 }
 
 .P2 {
@@ -147,6 +148,7 @@ body {
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  z-index: 1;
 }
 
 #game {
@@ -178,6 +180,22 @@ body {
   text-align: center;
   line-height: 100px;
   cursor: pointer;
+  position: relative;
+}
+
+.square img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70%;
+  transform:translate(-50%, -50%);
+}
+
+.square p {
+  position: absolute;
+  right: 0;
+  top: -40%;
+  font-size: 2rem;
 }
 
 #reset {
@@ -216,7 +234,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  position: fixed;
+  position: static;
   bottom: 0;
   padding: 10px;
 }
@@ -291,7 +309,7 @@ body {
 }
 
 .square:hover, .square:focus {
-  background-color: var(--amarelo);
+  background-color: var(--verde);
 }
 
 /* RESPONSIVE */

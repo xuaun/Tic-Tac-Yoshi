@@ -1,6 +1,8 @@
 const squares = document.querySelectorAll(".square");
 const status = document.getElementById("status");
 const resetButton = document.getElementById("reset");
+const P1 = document.getElementById("P1");
+const P2 = document.getElementById("P2");
 let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
 
@@ -103,11 +105,18 @@ function changeTieImages() {
 function handleSquareClick(event) {
   const index = event.target.id;
   if (!gameBoard[index] && currentPlayer === "X") {
-    event.target.textContent = currentPlayer;
+    let eggImageP1 = document.createElement("img");
+    eggImageP1.src = `./assets/${cor}-egg.png`;
+    eggImageP1.alt = `Ovo de Yoshi ${cor} - jogador ${currentPlayer}`;
+    event.target.appendChild(eggImageP1);
+    let jogadaP1 = document.createElement("p");
+    jogadaP1.innerHTML = `${currentPlayer}`;
+    event.target.appendChild(jogadaP1);
     gameBoard[index] = currentPlayer;
 
     if (checkWinner() || checkTie()) {
       updateStatus();
+      currentPlayer = "O";
     } else {
       currentPlayer = "O";
       updateStatus();
@@ -169,7 +178,13 @@ function handleAIMove() {
 
     setTimeout(() => {
       const square = document.getElementById(randomIndex);
-      square.textContent = currentPlayer;
+      let eggImageP2 = document.createElement("img");
+      eggImageP2.src = `./assets/${corP2}-egg.png`;
+      eggImageP2.alt = `Ovo de Yoshi ${corP2} - jogador ${currentPlayer}`;
+      square.appendChild(eggImageP2);
+      let jogadaP2 = document.createElement("p");
+      jogadaP2.innerHTML = `${currentPlayer}`
+      square.appendChild(jogadaP2);
       gameBoard[randomIndex] = currentPlayer;
 
       if (checkWinner() || checkTie()) {
@@ -194,7 +209,7 @@ P1.appendChild(imagem);
 const caminhoImagemP2 = localStorage
   .getItem("cpu")
   .replace("-hover.png", ".png");
-const corP2 =caminhoImagemP2.split("/")[2].split("-")[0];
+const corP2 = caminhoImagemP2.split("/")[2].split("-")[0];
 let imagemp2 = document.createElement("img");
 imagemp2.src = caminhoImagemP2;
 imagemp2.alt = `Yoshi ${corP2} selecionado - jogador O`;
