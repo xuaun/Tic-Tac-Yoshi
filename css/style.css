@@ -92,7 +92,7 @@
 
 .menu {
   justify-content: center;
-  background: url(../assets/menu-background-img.png);
+  background: url(../assets/menu-background-img.png), #000000;
   height: 100vh;
   width: 100vw;
   background-position: center;
@@ -103,7 +103,7 @@
 .personagem {
   justify-content: center;
   font-family: SMW2;
-  background: url(../assets/personagem-background-img.png);
+  background: url(../assets/personagem-background-img.png), #000098;
   height: 100vh;
   width: 100vw;
   background-position: center;
@@ -115,7 +115,7 @@
 
 .partida {
   font-family: SMW2;
-  background: url(../assets/game-background-img.png);
+  background: url(../assets/game-background-img.png), #00a8f3;
   height: 100vh;
   width: 100vw;
   background-position: bottom;
