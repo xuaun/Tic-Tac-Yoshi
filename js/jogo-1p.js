@@ -104,7 +104,6 @@ function changeTieImages() {
 
 function handleSquareClick(event) {
   const index = event.target.id;
-  console.log(index)
   if (index !== "" && !gameBoard[index] && currentPlayer === "X") {
     let eggImageP1 = document.createElement("img");
     eggImageP1.src = `./assets/${cor}-egg.png`;
