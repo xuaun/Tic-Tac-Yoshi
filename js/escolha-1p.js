@@ -72,18 +72,24 @@ function updateStartButtonState() {
     salvarBtn.classList.remove("disabled");
     salvarBtn.removeAttribute("disabled");
     salvarBtn.href = "./partida-1p.html";
-    salvarBtn.addEventListener("click", () => {
-      const imagemSelecionada = document.querySelector(".selected");
-      const enderecoImagem = imagemSelecionada.getAttribute("src");
-      localStorage.setItem("imagemSelecionada", enderecoImagem);
-      const cpuImage = getRandomIcon(enderecoImagem);
-      localStorage.setItem("cpu", cpuImage);
-    });
   } else {
     salvarBtn.classList.add("disabled");
     salvarBtn.setAttribute("disabled", "disabled");
+    salvarBtn.href = "#";
   }
 }
+
+salvarBtn.addEventListener("click", () => {
+  if (!selectedYoshi) {
+    alert("Por favor, selecione um Yoshi antes de começar!");
+    return;
+  }
+  const imagemSelecionada = document.querySelector(".selected");
+  const enderecoImagem = imagemSelecionada.getAttribute("src");
+  localStorage.setItem("imagemSelecionada", enderecoImagem);
+  const cpuImage = getRandomIcon(enderecoImagem);
+  localStorage.setItem("cpu", cpuImage);
+});
 
 const icons = [
   "./assets/verde-icon-hover.png",

@@ -34,6 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 17vh 0 auto;
 }
 
 .menu__intro__titulo {
@@ -212,31 +213,25 @@ body {
 .rodape {
   font-family: SMW2;
   font-size: clamp(1.5rem, 1.143rem + 1.786vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 17vh;
+  text-align: center;
+}
+
+.menu .rodape {
+  margin: auto 0 17vh;
 }
 
 .personagem__rodape {
   margin-top: 20px;
   color: var(--amarelo);
   bottom: 0;
-  position: relative;
 }
 
 .partida__rodape {
   font-size: 150%;
   color: #000;
   background-color: hsla(120, 100%, 19%, 80%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: static;
-  bottom: 0;
   padding: 10px;
+  margin: auto 0 0;
 }
 
 /* HOVER & FOCUS */
@@ -315,6 +310,20 @@ body {
 /* RESPONSIVE */
 
 @media (max-width: 740px) {
+  .personagem__titulo {
+    line-height: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .yoshi {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .partida__titulo {
+    margin-bottom: 0;
+  }
+  
   .campo {
     position: relative;
   }
