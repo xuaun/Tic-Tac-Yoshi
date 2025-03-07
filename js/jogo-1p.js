@@ -104,7 +104,8 @@ function changeTieImages() {
 
 function handleSquareClick(event) {
   const index = event.target.id;
-  if (!gameBoard[index] && currentPlayer === "X") {
+  console.log(index)
+  if (index !== "" && !gameBoard[index] && currentPlayer === "X") {
     let eggImageP1 = document.createElement("img");
     eggImageP1.src = `./assets/${cor}-egg.png`;
     eggImageP1.alt = `Ovo de Yoshi ${cor} - jogador ${currentPlayer}`;
