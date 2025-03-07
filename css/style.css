@@ -34,7 +34,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 17vh 0 auto;
+  margin: calc(37vh - 96px) 0 auto;
 }
 
 .menu__intro__titulo {
